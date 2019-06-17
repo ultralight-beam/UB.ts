@@ -1,7 +1,7 @@
 {
-  "name": "@ultralight-beam/typescript",
-  "version": "0.0.1",
-  "description": "A Typescript implementation of the Ultralight Beam protocol",
+  "name": "@ultralight-beam/ub.ts",
+  "version": "0.1.0",
+  "description": "A Typescript implementation of the Ultralight Beam",
   "main": "lib/index.js",
   "scripts": {
     "build": "babel src -x .ts -d lib --source-maps",
@@ -11,18 +11,25 @@
     "pretest": "yarn run check-types",
     "test": "mocha -r ts-node/register 'test/**/*.test.ts'"
   },
+   "bugs": {
+    "url": "https://github.com/ultralight-beam/UB.ts/issues"
+  },
+  "homepage": "https://github.com/ultralight-beam/UB.ts#readme",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ultralight-beam/typescript.git"
+    "url": "git+https://github.com:ultralight-beam/UB.ts.git"
   },
-  "author": "Gregory Markou",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/ultralight-beam/typescript/issues"
-  },
-  "homepage": "https://github.com/ultralight-beam/typescript#readme",
+  "author": "Ultralight Beam",
+  "license": "Apache 2.0",
   "files": [
     "lib"
+  ],
+  "keywords": [
+    "Ethereum",
+    "bluetooth",
+    "p2p",
+    "blockchain",
+    "manet"
   ],
   "dependencies": {
     "@babel/cli": "^7.4.4",
