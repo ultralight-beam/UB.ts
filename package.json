@@ -1,0 +1,36 @@
+{
+  "name": "@ultralight-beam/typescript",
+  "version": "0.0.1",
+  "description": "A Typescript implementation of the Ultralight Beam protocol",
+  "main": "lib/index.js",
+  "scripts": {
+    "build": "babel src -x .ts -d lib --source-maps",
+    "check-types": "tsc --noEmit --incremental",
+    "lint": "eslint --ext .ts src/",
+    "lint-fix": "eslint --ext .ts src/ --fix",
+    "pretest": "yarn run check-types",
+    "test": "mocha -r ts-node/register 'test/**/*.test.ts'"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ultralight-beam/typescript.git"
+  },
+  "author": "Gregory Markou",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ultralight-beam/typescript/issues"
+  },
+  "homepage": "https://github.com/ultralight-beam/typescript#readme",
+  "files": [
+    "lib"
+  ],
+  "dependencies": {
+    "@babel/cli": "^7.4.4",
+    "@babel/preset-typescript": "^7.3.3",
+    "@babel/register": "^7.4.4",
+    "eslint": "^5.16.0",
+    "mocha": "^6.1.4",
+    "ts-node": "^8.3.0",
+    "typescript": "^3.5.2"
+  }
+}
