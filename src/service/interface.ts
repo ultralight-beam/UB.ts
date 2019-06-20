@@ -1,6 +1,6 @@
 export type UBID = string;
 
-export interface Message {
+export interface IUBMessage {
   protocol: UBID;
   from: string;
   to: string;
