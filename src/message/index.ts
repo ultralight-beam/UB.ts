@@ -1,4 +1,4 @@
-export type UBID = string;
+import {UBID} from "../constants/service";
 
 export interface IUBMessage {
   protocol: UBID;

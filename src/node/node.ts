@@ -14,8 +14,7 @@ export interface INode {
 export class Node implements INode {
   public _services: Map<UBID, IService> = new Map();
   public _transports: Map<string, ITransport> = new Map();
-  // public constructor(services: []IService, transports: []ITransports) {
-  public constructor(services, transports) {
+  public constructor(services: IService[], transports: ITransport[]) {
     services.forEach((s: IService) => {this.addService(s);});
     transports.forEach((t: ITransport) => {this.addTransport(t);});
   }
