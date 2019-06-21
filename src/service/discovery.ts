@@ -11,5 +11,5 @@ export function createDiscovery(
     from,
     to,
     message: Buffer.from(protocols.toString())
-  }
+  };
 }

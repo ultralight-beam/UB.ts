@@ -4,40 +4,40 @@ import {ITransport} from "../transport/transport";
 
 export interface INode {
   _services: Map<UBID, IService>;
-    _transports: Map<string, ITransport>;
+  _transports: Map<string, ITransport>;
   addService(service: IService): void;
-  removeService(service: UBID): void;
+  removeService(service: IService): void;
   addTransport(transport: ITransport): void;
-  removeTransport(transport: string): void;
+  removeTransport(transport: ITransport): void;
 }
 
 export class Node implements INode {
-  _services: Map<UBID, IService> = new Map();
-  _transports: Map<string, ITransport> = new Map();
-  constructor(services: []IService, transports: []ITransports) {
-    services.forEach((s: IService) => {this.addService(this._services.set(s.ubid, s))});
-    transports.forEach((t: ITransport) => {this.addTransport(this._transports.set(t.constructor.name, t))});
+  public _services: Map<UBID, IService> = new Map();
+  public _transports: Map<string, ITransport> = new Map();
+  // public constructor(services: []IService, transports: []ITransports) {
+  public constructor(services, transports) {
+    services.forEach((s: IService) => {this.addService(s);});
+    transports.forEach((t: ITransport) => {this.addTransport(t);});
   }
 
   public addService(service: IService): void {
-    if (this._services.has(service.ubid)) return;
-    this._services.set(service.ubid, service);
+    if (this._services.has(service.type)) return;
+    this._services.set(service.type, service);
   }
 
   public removeService(service: IService): void {
-    if (!this._services.has(service.ubid)) return;
-    this._services.delete(service.ubid);
+    if (!this._services.has(service.type)) return;
+    this._services.delete(service.type);
   }
 
-  public addTransport(transport: Itransport): void {
+  public addTransport(transport: ITransport): void {
     if (this._transports.has(transport.constructor.name)) return;
-    transport.start();
+    transport.listen();
     this._transports.set(transport.constructor.name, transport);
   }
 
   public removeTransport(transport: ITransport): void {
     if (!this._transports.has(transport.constructor.name)) return;
-    transport.stop();
     this._transports.delete(transport.constructor.name);
   }
 }

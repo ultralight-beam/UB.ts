@@ -1,2 +1,2 @@
-import * from "./interface";
+export * from "./transport";
 

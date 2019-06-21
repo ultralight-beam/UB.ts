@@ -1,6 +1,6 @@
+import {IUBMessage, UBID} from "../message";
+
 export interface IService {
   type: UBID;
-  handle: IHandle;
+  IHandle(msg: IUBMessage): void;
 }
-
-export type IHandle = (msg: UBMessage): void;
