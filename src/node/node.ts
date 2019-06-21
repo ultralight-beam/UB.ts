@@ -1,3 +1,7 @@
+import {UBID} from "../message";
+import {IService} from "../service/service";
+import {ITransport} from "../transport/transport";
+
 export interface INode {
   _services: Map<UBID, IService>;
     _transports: Map<string, ITransport>;
@@ -8,13 +12,13 @@ export interface INode {
 }
 
 export class Node implements INode {
-_services: Map<UBID, IService> = new Map();
+  _services: Map<UBID, IService> = new Map();
   _transports: Map<string, ITransport> = new Map();
-  constructor(services: []IService, transports: []ITransports){
+  constructor(services: []IService, transports: []ITransports) {
     services.forEach((s: IService) => {this.addService(this._services.set(s.ubid, s))});
     transports.forEach((t: ITransport) => {this.addTransport(this._transports.set(t.constructor.name, t))});
   }
-  
+
   public addService(service: IService): void {
     if (this._services.has(service.ubid)) return;
     this._services.set(service.ubid, service);

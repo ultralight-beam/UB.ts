@@ -1,1 +1,1 @@
-import * from "./interface"
+export * from "./node"
