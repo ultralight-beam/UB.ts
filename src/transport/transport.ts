@@ -8,5 +8,5 @@ export enum TransportStatus {
 export interface ITransport {
   _status: TransportStatus;
   send(message: IUBMessage): void;
-  listen(message: IUBMessage): void;
+  listen(): void;
 }

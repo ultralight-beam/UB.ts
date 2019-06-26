@@ -4,8 +4,8 @@ import {ITransport} from "../transport";
 import {IUBMessage} from "../message";
 
 export interface INode {
-  _services: Map<UBID, IService>;
-  _transports: Map<string, ITransport>;
+  _services?: Map<UBID, IService>;
+  _transports?: Map<string, ITransport>;
   addService(service: IService): void;
   removeService(service: IService): void;
   addTransport(transport: ITransport): void;
@@ -15,7 +15,8 @@ export interface INode {
 export class Node implements INode {
   public _services: Map<UBID, IService> = new Map();
   public _transports: Map<string, ITransport> = new Map();
-  public constructor(services: IService[], transports: ITransport[]) {
+  
+  public constructor(services: IService[] = [], transports: ITransport[] = []) {
     services.forEach((s: IService) => {this.addService(s);});
     transports.forEach((t: ITransport) => {this.addTransport(t);});
   }
@@ -33,11 +34,7 @@ export class Node implements INode {
   public addTransport(transport: ITransport): void {
     if (this._transports.has(transport.constructor.name)) return;
     // TODO listen needs to be an event emitter
-    transport.listen((msg: IUBMessage) => {
-      const service = this._services.get(msg.proto);
-      if (service === undefined) return;
-      service.handle(msg);
-    });
+    transport.listen();
     this._transports.set(transport.constructor.name, transport);
   }
 
