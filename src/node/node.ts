@@ -34,7 +34,7 @@ export class Node implements INode {
     if (this._transports.has(transport.constructor.name)) return;
     // TODO listen needs to be an event emitter
     transport.listen((msg: IUBMessage) => {
-      const service = this._services.get(msg.proto)
+      const service = this._services.get(msg.proto);
       if (service === undefined) return;
       service.handle(msg);
     });

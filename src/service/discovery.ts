@@ -8,7 +8,7 @@ export interface Discovery {
 
 export class Discovery implements IService {
   public _type: UBID;
-  constructor() {
+  public constructor() {
     this._type = DISCOVERY;
   }
 
