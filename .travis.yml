@@ -1,0 +1,18 @@
+language: node_js
+node_js:
+  - "lts/*"
+
+cache:
+  yarn: true
+  directories:
+    - node_modules
+
+jobs:
+  include:
+    - stage: Lint
+      name: Lint
+      script: yarn run lint
+
+    - stage: Tests
+      name: Unit
+      script: yarn run test
