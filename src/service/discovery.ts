@@ -1,5 +1,5 @@
 import {IUBMessage} from "../message";
-import {DISCOVERY, UBID} from "../constants/service";
+import {DISCOVERY, UBID} from "../types/service";
 import {IService} from "./interface";
 
 export interface Discovery {
@@ -7,11 +7,14 @@ export interface Discovery {
 }
 
 export class Discovery implements IService {
-  public _type: UBID = DISCOVERY;
+  public _type: UBID;
+  constructor() {
+    this._type = DISCOVERY;
+  }
 
   public static create(from: string, to: string, protocols: UBID[]): IUBMessage {
     return {
-      protocol: DISCOVERY,
+      proto: this._type,
       from,
       to,
       message: Buffer.from(protocols.toString())

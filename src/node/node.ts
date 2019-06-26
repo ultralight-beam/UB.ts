@@ -1,6 +1,7 @@
-import {UBID} from "../message";
-import {IService} from "../service/service";
-import {ITransport} from "../transport/transport";
+import {UBID} from "../types";
+import {IService} from "../service";
+import {ITransport} from "../transport";
+import {IUBMessage} from "../message";
 
 export interface INode {
   _services: Map<UBID, IService>;
@@ -20,18 +21,23 @@ export class Node implements INode {
   }
 
   public addService(service: IService): void {
-    if (this._services.has(service.type)) return;
-    this._services.set(service.type, service);
+    if (this._services.has(service._type)) return;
+    this._services.set(service._type, service);
   }
 
   public removeService(service: IService): void {
-    if (!this._services.has(service.type)) return;
-    this._services.delete(service.type);
+    if (!this._services.has(service._type)) return;
+    this._services.delete(service._type);
   }
 
   public addTransport(transport: ITransport): void {
     if (this._transports.has(transport.constructor.name)) return;
-    transport.listen();
+    // TODO listen needs to be an event emitter
+    transport.listen((msg: IUBMessage) => {
+      const service = this._services.get(msg.proto)
+      if (service === undefined) return;
+      service.handle(msg);
+    });
     this._transports.set(transport.constructor.name, transport);
   }
 

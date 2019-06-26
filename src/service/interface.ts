@@ -1,5 +1,5 @@
 import {IUBMessage} from "../message";
-import {UBID} from "../constants/service";
+import {UBID} from "../types/service";
 
 export interface IService {
   _type: UBID;

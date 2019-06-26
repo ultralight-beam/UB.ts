@@ -1,8 +1,8 @@
-import {UBID} from "../constants/service";
+import {UBID} from "../types/service";
 
 export interface IUBMessage {
-  protocol: UBID;
-  from: string;
+  proto: UBID;
   to: string;
+  from: string;
   message: Buffer;
 }
