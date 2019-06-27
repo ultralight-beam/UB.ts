@@ -1,6 +1,8 @@
 import {IUBMessage} from "../message";
-import {DISCOVERY, UBID} from "../types";
+import {UBID} from "../types";
 import {IService} from "./interface";
+
+const DISCOVERY: UBID = [0];
 
 export interface Discovery {
   create(from: string, to: string, protocols: UBID[]): IUBMessage;
