@@ -2,18 +2,18 @@ import {IUBMessage} from "../message";
 import {UBID} from "../types";
 import {IService} from "./interface";
 
-const DISCOVERY: UBID = [0];
+const ADVERTISE: UBID = [0];
 
-export interface Discovery {
+export interface Advertise {
   create(from: string, to: string, protocols: UBID[]): IUBMessage;
 }
 
-export class Discovery implements IService, Discovery {
-  public _type = DISCOVERY;
+export class Advertise implements IService, Advertise {
+  public _type = ADVERTISE;
 
   public static create(from: string, to: string, protocols: UBID[]): IUBMessage {
     return {
-      proto: DISCOVERY,
+      proto: ADVERTISE,
       from,
       to,
       message: Buffer.from(protocols.toString())
