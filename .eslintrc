@@ -25,7 +25,7 @@
     "no-console": "warn",
     "semi": ["warn", "always"],
     "max-len": ["warn", {
-        "code": 100
+        "code": 120
     }],
     "object-curly-spacing": ["warn", "never"]
   }
